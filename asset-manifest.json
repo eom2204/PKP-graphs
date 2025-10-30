@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.js": "/PKP-graphs/static/js/main.ee6fc2fd.js",
+    "CoseBilkentLayout.js": "/PKP-graphs/static/js/CoseBilkentLayout.ac865a15.chunk.js",
+    "HierarchicalLayout.js": "/PKP-graphs/static/js/HierarchicalLayout.c98ae787.chunk.js",
+    "tsub-middleware.js": "/PKP-graphs/static/js/tsub-middleware.76a451ae.chunk.js",
+    "ajs-destination.js": "/PKP-graphs/static/js/ajs-destination.6c8fef86.chunk.js",
+    "legacyVideos.js": "/PKP-graphs/static/js/legacyVideos.244d8f2e.chunk.js",
+    "schemaFilter.js": "/PKP-graphs/static/js/schemaFilter.54c2c65e.chunk.js",
+    "remoteMiddleware.js": "/PKP-graphs/static/js/remoteMiddleware.71a308f4.chunk.js",
+    "auto-track.js": "/PKP-graphs/static/js/auto-track.050a62ad.chunk.js",
+    "queryString.js": "/PKP-graphs/static/js/queryString.287eec36.chunk.js",
+    "static/js/381.241e8a1a.chunk.js": "/PKP-graphs/static/js/381.241e8a1a.chunk.js",
+    "index.html": "/PKP-graphs/index.html",
+    "main.ee6fc2fd.js.map": "/PKP-graphs/static/js/main.ee6fc2fd.js.map",
+    "CoseBilkentLayout.ac865a15.chunk.js.map": "/PKP-graphs/static/js/CoseBilkentLayout.ac865a15.chunk.js.map",
+    "HierarchicalLayout.c98ae787.chunk.js.map": "/PKP-graphs/static/js/HierarchicalLayout.c98ae787.chunk.js.map",
+    "tsub-middleware.76a451ae.chunk.js.map": "/PKP-graphs/static/js/tsub-middleware.76a451ae.chunk.js.map",
+    "ajs-destination.6c8fef86.chunk.js.map": "/PKP-graphs/static/js/ajs-destination.6c8fef86.chunk.js.map",
+    "legacyVideos.244d8f2e.chunk.js.map": "/PKP-graphs/static/js/legacyVideos.244d8f2e.chunk.js.map",
+    "schemaFilter.54c2c65e.chunk.js.map": "/PKP-graphs/static/js/schemaFilter.54c2c65e.chunk.js.map",
+    "remoteMiddleware.71a308f4.chunk.js.map": "/PKP-graphs/static/js/remoteMiddleware.71a308f4.chunk.js.map",
+    "auto-track.050a62ad.chunk.js.map": "/PKP-graphs/static/js/auto-track.050a62ad.chunk.js.map",
+    "queryString.287eec36.chunk.js.map": "/PKP-graphs/static/js/queryString.287eec36.chunk.js.map",
+    "381.241e8a1a.chunk.js.map": "/PKP-graphs/static/js/381.241e8a1a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ee6fc2fd.js"
+  ]
+}
