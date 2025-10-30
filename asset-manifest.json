@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/PKP-graphs/static/js/main.ee6fc2fd.js",
+    "main.js": "/PKP-graphs/static/js/main.679d6b30.js",
     "CoseBilkentLayout.js": "/PKP-graphs/static/js/CoseBilkentLayout.ac865a15.chunk.js",
     "HierarchicalLayout.js": "/PKP-graphs/static/js/HierarchicalLayout.c98ae787.chunk.js",
     "tsub-middleware.js": "/PKP-graphs/static/js/tsub-middleware.76a451ae.chunk.js",
@@ -12,7 +12,7 @@
     "queryString.js": "/PKP-graphs/static/js/queryString.287eec36.chunk.js",
     "static/js/381.241e8a1a.chunk.js": "/PKP-graphs/static/js/381.241e8a1a.chunk.js",
     "index.html": "/PKP-graphs/index.html",
-    "main.ee6fc2fd.js.map": "/PKP-graphs/static/js/main.ee6fc2fd.js.map",
+    "main.679d6b30.js.map": "/PKP-graphs/static/js/main.679d6b30.js.map",
     "CoseBilkentLayout.ac865a15.chunk.js.map": "/PKP-graphs/static/js/CoseBilkentLayout.ac865a15.chunk.js.map",
     "HierarchicalLayout.c98ae787.chunk.js.map": "/PKP-graphs/static/js/HierarchicalLayout.c98ae787.chunk.js.map",
     "tsub-middleware.76a451ae.chunk.js.map": "/PKP-graphs/static/js/tsub-middleware.76a451ae.chunk.js.map",
@@ -25,6 +25,6 @@
     "381.241e8a1a.chunk.js.map": "/PKP-graphs/static/js/381.241e8a1a.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ee6fc2fd.js"
+    "static/js/main.679d6b30.js"
   ]
 }
