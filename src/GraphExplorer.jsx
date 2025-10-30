@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import neo4j from "neo4j-driver";
-import { BasicNvlWrapper } from "@neo4j-nvl/react";
+import { InteractiveNvlWrapper } from "@neo4j-nvl/react";
 
 const GraphExplorer = () => {
     const [nodes, setNodes] = useState([]);
@@ -18,7 +18,6 @@ const GraphExplorer = () => {
 
             const session = driver.session();
             try {
-                // Fetch part of your PKP graph
                 const result = await session.run(`
           MATCH (a)-[r]->(b)
           RETURN a, r, b
@@ -28,7 +27,7 @@ const GraphExplorer = () => {
                 const nodeMap = new Map();
                 const relationships = [];
 
-                result.records.forEach(record => {
+                result.records.forEach((record) => {
                     const a = record.get("a");
                     const b = record.get("b");
                     const r = record.get("r");
@@ -36,24 +35,31 @@ const GraphExplorer = () => {
                     nodeMap.set(a.identity.toString(), {
                         id: a.identity.toString(),
                         label: a.labels[0],
-                        properties: a.properties
+                        size: 30,
+                        color: "#ffc107",
+                        properties: a.properties,
                     });
+
                     nodeMap.set(b.identity.toString(), {
                         id: b.identity.toString(),
                         label: b.labels[0],
-                        properties: b.properties
+                        size: 30,
+                        color: "#42a5f5",
+                        properties: b.properties,
                     });
 
                     relationships.push({
                         id: r.identity.toString(),
                         from: a.identity.toString(),
                         to: b.identity.toString(),
-                        type: r.type
+                        type: r.type,
                     });
                 });
 
                 setNodes(Array.from(nodeMap.values()));
                 setRels(relationships);
+
+                console.log("Fetched", result.records.length, "records from Aura");
             } catch (err) {
                 console.error("Error fetching graph:", err);
             } finally {
@@ -65,15 +71,26 @@ const GraphExplorer = () => {
         fetchGraph();
     }, []);
 
+    const mouseEventCallbacks = {
+        onNodeClick: (node, hitTargets, evt) => {
+            console.log("Node clicked:", node);
+            alert(`Node clicked:\nLabel: ${node.label}\nID: ${node.id}`);
+        },
+        onRelationshipClick: (rel, hitTargets, evt) => {
+            console.log("Relationship clicked:", rel);
+        },
+        onZoom: (zoomLevel) => {
+            console.log("Zoom level:", zoomLevel);
+        },
+        onPan: () => console.log("Panning graph..."),
+    };
+
     return (
         <div style={{ width: "100%", height: "90vh", background: "#f9fafb" }}>
-            <BasicNvlWrapper
+            <InteractiveNvlWrapper
                 nodes={nodes}
                 rels={rels}
-                nvlOptions={{ initialZoom: 1.2 }}
-                nvlCallbacks={{
-                    onLayoutDone: () => console.log("Layout done"),
-                }}
+                mouseEventCallbacks={mouseEventCallbacks}
             />
         </div>
     );
