@@ -1,3 +1,10 @@
+Description:  This project is a React-based interactive graph explorer for visualizing data from a Neo4j database. It allows users to load nodes and relationships dynamically.
+Features:
+- Fetches graph data from a Neo4j database using environment variables for credentials.
+- Displays nodes and relationships with interactive visualization using `@neo4j-nvl/react`.
+- Highlights selected nodes and shows a tooltip with properties (excluding those containing "embedding").
+- Adjustable limit for the number of nodes/relationships displayed.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
