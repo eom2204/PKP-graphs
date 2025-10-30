@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import neo4j from "neo4j-driver";
-import { InteractiveNvlWrapper } from "@neo4j-nvl/react";
+import {InteractiveNvlWrapper} from "@neo4j-nvl/react";
 
 const GraphExplorer = () => {
     const [nodes, setNodes] = useState([]);
@@ -8,7 +8,7 @@ const GraphExplorer = () => {
     const [limit, setLimit] = useState(50);
     const [selectedNode, setSelectedNode] = useState(null);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
-    const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+    const [tooltipPos, setTooltipPos] = useState({x: 0, y: 0});
     const wrapperRef = useRef();
 
     const fetchGraph = async (limitValue) => {
@@ -28,10 +28,8 @@ const GraphExplorer = () => {
         RETURN a, r, b
         LIMIT $limit
         `,
-                { limit: neo4j.int(limitValue) }
+                {limit: neo4j.int(limitValue)}
             );
-
-            console.log(result)
 
             const nodeMap = new Map();
             const relationships = [];
@@ -78,19 +76,20 @@ const GraphExplorer = () => {
         onNodeClick: (node, hitTargets, evt) => {
             setSelectedNode(node);
             setSelectedNodeId(node.id);
-            setTooltipPos({ x: evt.clientX, y: evt.clientY });
+            setTooltipPos({x: evt.pageX, y: evt.pageY});
         },
+        onZoom: true,
+        onPan: true,
     };
 
-    // Define node style callback for InteractiveNvlWrapper
-    const nodeStyle = (node) => ({
-        fill: node.id === selectedNodeId ? "#ff4d4f" : "#1890ff", // red if selected, blue otherwise
-        stroke: "#333",
-        strokeWidth: 1.5,
-    });
+    const styledNodes = nodes.map((n) => ({
+        ...n,
+        selected: n.id === selectedNodeId,
+        color: n.id === selectedNodeId ? "#ee9878" : "#f4e216",
+    }));
 
     return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div style={{width: "100%", height: "100%", position: "fixed"}}>
             <div
                 style={{
                     display: "flex",
@@ -103,7 +102,7 @@ const GraphExplorer = () => {
                 <input
                     type="number"
                     value={limit}
-                    onChange={(e) => setLimit(e.target.value)}
+                    onChange={(e) => setLimit(parseInt(e.target.value || "0", 10))}
                     style={{
                         width: "80px",
                         padding: "6px",
@@ -117,7 +116,7 @@ const GraphExplorer = () => {
                         padding: "6px 14px",
                         borderRadius: "6px",
                         border: "none",
-                        backgroundColor: "#007bff",
+                        backgroundColor: "#6969cc",
                         color: "white",
                         cursor: "pointer",
                     }}
@@ -130,18 +129,20 @@ const GraphExplorer = () => {
                 ref={wrapperRef}
                 style={{
                     width: "100%",
-                    height: "85vh",
-                    background: "#f9fafb",
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    position: "relative",
+                    height: "calc(100vh - 80px)",
+                    borderTop: "1px solid #ddd",
+                    overflow: "hidden",
+                    cursor: "pointer",
                 }}
             >
                 <InteractiveNvlWrapper
-                    nodes={nodes}
+                    nodes={styledNodes}
                     rels={rels}
                     mouseEventCallbacks={mouseEventCallbacks}
-                    nodeStyle={nodeStyle} // <-- this makes colors dynamic
+                    nvlOptions={{
+                        autoZoom: false,
+                        zoomFitPadding: 0,
+                    }}
                 />
 
                 {selectedNode && (
@@ -160,8 +161,10 @@ const GraphExplorer = () => {
                         }}
                     >
                         <strong>{selectedNode.label}</strong>
-                        <ul style={{ marginTop: "6px", fontSize: "13px", paddingLeft: "16px" }}>
-                            {Object.entries(selectedNode.properties).map(([key, value]) => (
+                        <ul style={{marginTop: "6px", fontSize: "13px", paddingLeft: "16px"}}>
+                            {Object.entries(selectedNode.properties)
+                                .filter(([key, value]) => !key.toLowerCase().includes("embedding"))
+                                .map(([key, value]) => (
                                 <li key={key}>
                                     {key}: <em>{value.toString()}</em>
                                 </li>
